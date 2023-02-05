@@ -1,5 +1,3 @@
-import { paginate, manualPaginator } from '../paginator/paginator.service';
-
 import {
   Table,
   Column,
@@ -18,6 +16,8 @@ import {
   HasOne,
   AutoIncrement
 } from 'sequelize-typescript';
+import { Follower } from '../follower/follower.model';
+import { manualPaginator, paginate } from '../../paginator/paginator.service';
 
 @Table({
   timestamps: true,
@@ -29,9 +29,11 @@ export class User extends Model {
   @Column({ type: DataType.UUID })
   id: string;
 
-//   @AutoIncrement
-//   @Column
-//   count: number;
+  @Column
+  username: string;
+
+  @HasMany(() => Follower)
+  followers: Follower[];
 
   @CreatedAt
   @Column({ type: DataType.DATE })
@@ -45,7 +47,7 @@ export class User extends Model {
     return paginate<User>(this, filter, sort, page, limit, include);
   }
 
-//   static paginateManually(data: User[], page = 0, limit = 15) {
-//     return manualPaginator<User>(data, {}, '-createdAt', page, limit);
-//   }
+  static paginateManually(data: User[], page = 0, limit = 15) {
+    return manualPaginator<User>(data, {}, '-createdAt', page, limit);
+  }
 }

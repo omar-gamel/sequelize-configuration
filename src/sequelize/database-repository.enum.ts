@@ -1,3 +1,4 @@
 export enum Repositories {
-  UsersRepository = 'UsersRepository'
+  UsersRepository = 'UsersRepository',
+  FollowersRepository = 'FollowersRepository'
 }

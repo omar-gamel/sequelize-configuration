@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { SequelizeOptions, Sequelize } from 'sequelize-typescript';
 import { config } from './database.config';
-import { User } from 'src/models/user.model';
+import { User } from 'src/sample/user/user.model';
 
 export let sequelizeInstance: Sequelize;
 

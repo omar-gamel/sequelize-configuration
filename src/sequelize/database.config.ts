@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { SequelizeOptions } from 'sequelize-typescript';
 import { models } from './database.models';
-import { User } from 'src/models/user.model';
+import { User } from 'src/sample/user/user.model';
 
 export const config = (configService: ConfigService) => {
   return <SequelizeOptions>{
@@ -22,10 +22,9 @@ export const config = (configService: ConfigService) => {
       idle: 10000
     },
     sync: {
-        alter: true
+      force: true
     },
     // This approach to load models is incredibly faster than files matching
     models
   };
-  
 };
